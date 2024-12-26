@@ -1,0 +1,20 @@
+version: '3.8'
+
+services:
+  api:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    ports:
+      - "3307:3306"
+      - "2222:22"
+    networks:
+      custom_bridge_network:
+        ipv4_address: 192.168.1.100
+
+networks:
+  custom_bridge_network:
+    driver: bridge
+    ipam:
+      config:
+        - subnet: 192.168.1.0/24
